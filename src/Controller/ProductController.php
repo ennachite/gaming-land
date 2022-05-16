@@ -13,6 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
+  /**
+   * Home Page
+   *
+   * @param ProductRepository $productRepository
+   * @return Response
+   */
   #[Route('/', name: 'app_product')]
   public function index(ProductRepository $productRepository): Response
   {
@@ -21,6 +27,13 @@ class ProductController extends AbstractController
     return $this->render('product/index.html.twig', ['products' => $product]);
   }
 
+  /**
+   * create product
+   *
+   * @param Request $request
+   * @param EntityManagerInterface $em
+   * @return Response
+   */
   #[Route('/products/create', name: 'app_product_create', methods: 'GET|POST')]
   public function create(Request $request, EntityManagerInterface $em): Response
   {
@@ -45,6 +58,12 @@ class ProductController extends AbstractController
     ]);
   }
 
+  /**
+   * Show Products
+   *
+   * @param Product $product
+   * @return Response
+   */
   #[Route('/products/{id<[0-9]+>}', name: 'products', methods: 'GET')]
   public function show(Product  $product): Response
   {
@@ -52,8 +71,15 @@ class ProductController extends AbstractController
     return $this->render('product/show.html.twig', compact('product'));
   }
 
+  /**
+   * edit ptoducts
+   *
+   * @param Product $product
+   * @param EntityManagerInterface $em
+   * @param Request $request
+   * @return Response
+   */
   #[Route('/products/{id<[0-9]+>}/edit}', name: 'app_products_edit', methods: 'GET|POST')]
-  // #[Security("is_granted('ROLE_USER') && product.getUser()==user")]
   public function edit(Product $product, EntityManagerInterface $em, Request $request): Response
   {
     $form = $this->createForm(ProductType::class, $product);
@@ -72,8 +98,15 @@ class ProductController extends AbstractController
     ]);
   }
 
+  /**
+   * delete Product
+   *
+   * @param Product $product
+   * @param EntityManagerInterface $em
+   * @param Request $request
+   * @return Response
+   */
   #[Route('/products/{id<[0-9]+>}', name: 'app_products_delete', methods: 'POST')]
-  // #[Security("is_granted('ROLE_USER') && post.getUser()==user")]
   public function delete(Product $product, EntityManagerInterface $em, Request $request): Response
   {
     $em->remove($product);

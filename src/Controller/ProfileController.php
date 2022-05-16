@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProfileController extends AbstractController
 {
+    /**
+     * show user profile
+     *
+     * @return Response
+     */
     #[Route('/profile', name: 'app_profile')]
     public function show(): Response
     {
@@ -19,6 +24,13 @@ class ProfileController extends AbstractController
         return $this->render('profile/show.html.twig');
     }
 
+    /**
+     * edit user profile
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
     #[Route('/profile/edit', name: 'app_profile_edit', methods:'GET|POST')]
     public function edit(Request $request,EntityManagerInterface $em): Response
     {
