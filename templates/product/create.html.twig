@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'New Product' %}
+
+
+{% block body %}
+ 
+     <div class="row">
+         <div class="col-md-6 mx-auto">
+      
+      <h1> Create Product</h1>
+   
+      {{ form_start(formProducts)}}
+      
+      {{ form_widget(formProducts)}}
+
+      <input type="submit" value="Create Product" class="btn btn-primary">
+      {{ form_end(formProducts)}}
+
+         </div>
+     </div>
+ 
+   
+
+{% endblock %}
+ 
+

@@ -1,0 +1,21 @@
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="{{  path('app_product')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        
+        <span class="fs-4">Gaming Land</span>
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        {% if app.user %}
+        <li class="nav-item"><a href="{{  path('app_product')}}" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="{{  path('app_product_create')}}" class="nav-link">New Product</a></li>
+        <li class="nav-item"><a href="{{  path('app_profile')}}" class="nav-link">MyProfile</a></li>
+        <li class="nav-item"><a href="{{  path('app_logout')}}" class="nav-link">Logout</a></li>
+        {% else %}
+        <li class="nav-item"><a href="{{  path('app_register')}}" class="nav-link">Register</a></li>
+        <li class="nav-item"><a href="{{  path('app_login')}}" class="nav-link">Login</a></li>
+        {% endif %}
+      </ul>
+    </header>
+  </div>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Profile' %}
+
+{% block body %}
+<div class="row">
+   <div class="col-md-6 mx-auto text-center">
+      <h1>Profile</h1>
+      <img src="images\logo.png" class="mt-5 rounded-circle">
+      <h2 class="mt-5"> {{ app.user.firstName }} {{ app.user.lastName }} </h2>
+      
+
+            <p class="lead"> {{ app.user.email }} </p>
+            <p class="lead"> {{ app.user.phone }} </p>
+            <p><small>Account created at {{ app.user.createdAt|date('d/m/Y') }} </small></p>
+            <a href="{{  path('app_profile_edit')}}"> Edit Profile </a>
+
+    </div>
+</div>
+{% endblock %}

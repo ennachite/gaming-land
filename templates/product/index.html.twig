@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gamin Land' %}
+
+
+{% block body %}
+{% if products|length >0 %}
+<h1 class="text-center text-muted mb-4"> {{ pluriel(products|length,'Product','Products') }} </h1>
+
+{% for row in products|batch(3) %}
+<div class="row mb-5">
+{% for product in row %}
+<div class="col-md-4">
+<article class="bg-white rounded shadow post">
+<div class="mw-100 rounded-top overflow-hidden">
+   <a href="{{  path('products',{id: product.id }) }}"> 
+   {% if product.picture is null %}
+      <img src="{{ asset('images/placeholder.jpg') }}" alt="{{ product.name }}" class="w-100 ">
+   {% else %}
+      <img src="{{ product.picture }}" alt="{{ product.name }}" class="w-100 ">
+   {% endif %}
+      </a>
+   </div>
+   <h2 class="h5 ps-5 pt-3">{{ product.name }}</h2>
+   <p class="ps-5 pb-3 text-muted"><small>Submitted at {{ product.createdAt|ago }}  </small></p>
+      </article>
+      </div>
+   {% endfor %}
+   </div>
+   {% endfor %}
+   
+
+{% else %}
+   <p class="h1 text-center">No product Yet ! <a href="{{ path('app_product_create')}}">Soyez le 1er a créer un product !</a></p>
+{% endif %}
+{% endblock %}
